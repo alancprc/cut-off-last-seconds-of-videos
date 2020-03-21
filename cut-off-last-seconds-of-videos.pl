@@ -60,6 +60,8 @@ fun backupAndReturnBackFileName ($file)
 
 fun cutVideoEnd ($input, $output)
 {
+    return if -e $output;
+
     say "$input         => $output";
     my $cut_duration = 3;
     my $input_duration = `ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 '$input'`;
